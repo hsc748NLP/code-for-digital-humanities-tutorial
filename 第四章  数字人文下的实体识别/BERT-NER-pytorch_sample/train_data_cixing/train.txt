@@ -1,0 +1,27 @@
+太 B-n
+子 E-n
+曰 S-v
+： S-w
+
+使 S-v
+問 S-v
+弦 B-nr
+多 E-nr
+以 S-p
+琴 S-n
+， S-w
+曰 S-v
+： S-w
+
+十 B-t
+二 I-t
+月 E-t
+甲 B-t
+戌 E-t
+， S-w
+晉 S-ns
+作 S-v
+六 S-m
+軍 S-n
+。 S-w
+

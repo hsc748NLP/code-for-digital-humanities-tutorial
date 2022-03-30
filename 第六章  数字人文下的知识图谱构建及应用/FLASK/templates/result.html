@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>古汉语典籍问答系统-检索结果</title>
+	<style type="text/css">
+	.container {
+				width: 500px;
+				height: 50px;
+				margin: 100px auto;
+			}
+			
+			.parent {
+				width: 100%;
+				height: 42px;
+				top: 4px;
+				position: relative;
+			}
+			
+			.parent>input:first-of-type {
+				/*输入框高度设置为40px, border占据2px，总高度为42px*/
+				width: 380px;
+				height: 40px; 
+				border: 1px solid #ccc;
+				font-size: 16px;
+				outline: none;
+			}
+			
+			.parent>input:first-of-type:focus {
+				border: 1px solid #317ef3;
+				padding-left: 10px;
+			}
+			
+			.parent>input:last-of-type {
+				/*button按钮border并不占据外围大小，设置高度42px*/
+				width: 100px;
+				height: 40px; 
+				position: absolute;
+				background: #317ef3;
+				border: 1px solid #317ef3;
+				color: #fff;
+				font-size: 16px;
+				outline: none;
+			}
+			.input_sub{
+				width:100px;
+				height: 40px;
+				background: green;
+ 
+				/*去掉submit按钮默认边框*/
+				border:0px;
+				/*改成右浮动也是可以的*/
+				float:left;
+				color:white;/*搜索的字体颜色为白色*/
+				cursor:pointer;/*鼠标变为小手*/
+			}
+			.test{
+				width:128px;
+				height:128px;
+				position:relative;
+			}
+ 
+	</style>
+</head>
+<body>
+
+<div class="container">
+	<div align="center" position="relative">
+		<img src ="0.png" align="center"/>
+	</div>
+	
+	<div>
+    	<form method="POST" action="/wstmsearch" class ="parent">
+            <input type="search" name="keyword" value="{{ keyword }}">
+            <input type="submit" value="搜索"class="input_sub">
+        </form>
+    </div>
+
+    <div class="resultArea">
+ <span class="info"><br class="Result">
+     <br>
+     {{ search_result }}</span></span>
+    </div>
+
+    </div>
+
+</body>
+</html>

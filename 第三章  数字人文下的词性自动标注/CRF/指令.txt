@@ -1,0 +1,6 @@
+0.58版本成功在windows下跑起来了，测试和学习都能成功
+
+
+crf_learn template train.txt model   训练数据
+crf_test -m model test.txt >output.txt   测试数据
+conlleval.pl < output.txt   评估效果
