@@ -174,9 +174,9 @@ def main():
     train_start = time.time()
     pi, A, B = train_parameter(words, pos)
     train_end = time.time()
-    print("隐马尔可夫词性标注参数训练完成  耗时: " + str(train_end - train_start) + "s")
-    
-	# 词性标注 - 预测
+    print("隐马尔可夫词性标注参数训练完成，耗时: " + str(train_end - train_start) + "s")
+
+    # 词性标注 - 预测
     tags = list(set(pos))
     terms = list(set(words))
     test = read_txt(path_test)
@@ -191,7 +191,7 @@ def main():
         S = [most_tag if i == "" else i for i in S]
         write_txt_0(path_output, output_tag(O, S))
     predict_end = time.time()
-    print("隐马尔可夫词性标注预测完成  耗时: " + str(predict_end - predict_start) + "s")
+    print("隐马尔可夫词性标注预测完成，耗时: " + str(predict_end - predict_start) + "s")
 
 
 if __name__ == '__main__':
