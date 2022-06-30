@@ -10,7 +10,7 @@
     - （2）编译后的可执行文件  
 ### 使用方式
  - #### 运行编译后的可执行文件（推荐）：   
-在下载的文件夹中，依次点击文件夹`dist(打包完成的)`、`ICHAutoWordSegGUI`,在文件夹`ICHAutoWordSegGUI`中找到并运行`ICHAutoWordSegGUI.exe`文件即可。
+首先进入下载的文件夹，再进入`dist(打包完成的)`，再进入`ICHAutoWordSegGUI`,找到并运行`ICHAutoWordSegGUI.exe`文件即可。
  - #### 运行系统源码（进阶）：
 1. 在conda中配置PyQT运行环境：本项目依赖的环境见项目文件夹中的`environment.yml`,配置方式请参考参考在“在Pycharm配置QtDesigner和PyUIC”的有关教程。
 2. 在下载的文件夹中，找到并运行`ICHAutoWordSegGUI.py`模块即可。

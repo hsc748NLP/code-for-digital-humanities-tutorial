@@ -1,5 +1,6 @@
 import re
 import time
+from tqdm import tqdm, trange
 
 
 # 读取txt文件，path为txt文件路径/string，text为txt中文本内容/string
@@ -14,10 +15,9 @@ def read_txt(path):
 
 # 写入txt文件，path为txt文件路径/string，sentence为要写入的文本/string
 def write_txt_0(path, sentence):
-    f = open(path, 'a+', encoding='utf-8')
-    f.write(str(sentence) + "\n")
-    f.close()
-    print("文本文件已完成写入 path:" + path)
+    with open(path, 'a+', encoding='utf-8') as f:
+        f.write(str(sentence) + "\n")
+    # print("文本文件已完成写入 path:" + path)
 
 
 # 将已分词文本text/string中的词和词性提取，返回词words/list、词性pos/list
@@ -90,13 +90,14 @@ def train_parameter(words, pos):
             A[front][behind] = num[front][behind] / pos.count(tags[front])  # 词性为front的词其后继词的词性为behind的概率
     print("状态转移矩阵计算完成")
     # 计算词性序列混淆矩阵
+    print("计算混淆矩阵...")
     B = [[0 for term in range(n_terms)] for tag in range(n_tags)]  # 定义词性序列混淆矩阵B/list2，行数等于词性标签种类数，列数等于词种类数
     freq = [[0 for term in range(n_terms)] for tag in range(n_tags)]  # 定义词性i序列j同时出现的频次freq/list2，行数和列数同B
-    for i in range(len(pos)):
+    for i in trange(len(pos)):
         tag = tags.index(pos[i])  # 词性状态
         term = terms.index(words[i])  # 词序列
         freq[tag][term] += 1  # 频次加一
-    for tag in range(n_tags):
+    for tag in trange(n_tags):
         for term in range(n_terms):
             B[tag][term] = freq[tag][term] / pos.count(tags[tag])  # 词性为tag时词term出现的概率
             # B[tag][term] = freq[tag][term] / words.count(terms[term])
@@ -111,6 +112,8 @@ def viterbi(O, tags, terms, pi, A, B):
     delta = [[0 for i in range(n_tags)] for t in range(length)]
     S = ["" for t in range(length)]
     for t in range(length):
+        max_d = max(delta[t])
+        max_i = delta[t].index(max_d)
         try:
             if t == 0:
                 for i in range(n_tags):
@@ -184,7 +187,7 @@ def main():
     most_tag = max(pos, key=pos.count)  # 如果出现新词，标记为出现频率最高的词性
     print("开始序列预测")
     predict_start = time.time()
-    for sentence in test:
+    for sentence in tqdm(test):
         sentence = sentence.strip()
         O = sentence.split("/")
         S = viterbi(O, tags, terms, pi, A, B)
