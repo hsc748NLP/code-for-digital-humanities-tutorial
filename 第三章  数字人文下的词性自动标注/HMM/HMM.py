@@ -1,5 +1,6 @@
 import re
 import time
+
 from tqdm import tqdm, trange
 
 
@@ -112,8 +113,6 @@ def viterbi(O, tags, terms, pi, A, B):
     delta = [[0 for i in range(n_tags)] for t in range(length)]
     S = ["" for t in range(length)]
     for t in range(length):
-        max_d = max(delta[t])
-        max_i = delta[t].index(max_d)
         try:
             if t == 0:
                 for i in range(n_tags):
@@ -189,7 +188,7 @@ def main():
     predict_start = time.time()
     for sentence in tqdm(test):
         sentence = sentence.strip()
-        O = sentence.split("/")
+        O = sentence.split("/")[:-1]
         S = viterbi(O, tags, terms, pi, A, B)
         S = [most_tag if i == "" else i for i in S]
         write_txt_0(path_output, output_tag(O, S))

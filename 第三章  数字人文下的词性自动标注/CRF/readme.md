@@ -9,7 +9,7 @@
 #### CRF运行指令
 
 1.训练模型
-> crf_learn -p 8 template train.txt model 
+> crf_learn -p 8 -f 10 template data/train.txt model 
 
 2.测试模型
 > crf_test -m model test.txt >output.txt
