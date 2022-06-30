@@ -4,7 +4,6 @@ import re
 import os
 from fontTools.ttLib import TTFont
 
-
 def char_to_img(all_chara, img_dir, uniMap, font, img_size):
     """借由汉字列表（all_chara）中的汉字，生成由指定字体构成的图片"""
     for chara in all_chara:
