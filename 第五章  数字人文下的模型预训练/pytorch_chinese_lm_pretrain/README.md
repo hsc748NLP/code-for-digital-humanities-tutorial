@@ -22,11 +22,7 @@ python run_language_model_bert.py     --output_dir=output     --model_type=bert 
 (https://github.com/ymcui/Chinese-BERT-wwm)
 
 
-哈工大讯飞联合实验室发布的预训练语言模型。预训练的方式是采用roberta类似的方法，比如动态mask，更多的训练数据等等。在很多任务中，该模型效果要优于bert-base-chinese。
-因为中文roberta类的配置文件比如vocab.txt，都是采用bert的方法设计的。英文roberta模型读取配置文件的格式默认是vocab.json。对于一些英文roberta模型，倒是可以通过AutoModel自动读取。这就解释了huggingface的模型库的中文roberta示例代码为什么跑不通。https://huggingface.co/models?
-
-
-如果要基于上面的代码run_language_modeling.py继续预训练roberta。还需要做两个改动。
+要基于上面的代码run_language_model_roberta.py继续预训练roberta。还需要做两个改动。
 * 下载roberta-wwm-ext到本地目录hflroberta，在config.json中修改“model_type”:"roberta"为"model_type":"bert"。
 * 对上面的run_language_modeling.py中的AutoModel和AutoTokenizer都进行替换为BertModel和BertTokenizer。
 
