@@ -7,10 +7,10 @@
 2.transfer.py用于将预训练完成的bin文件转为ckpt格式，可供tensorflow框架加载。
 
 ## 建议运行环境
-'''
+```
 torch==1.6.0
 
 transformers==3.4.0
 
 1.15.0<= tensorflow <2.0
-'''
+```
