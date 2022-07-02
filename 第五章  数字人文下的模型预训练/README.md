@@ -2,7 +2,7 @@
 
 本部分包含预训练BERT类模型和将bin模型转换为ckpt模型的代码
 
-1.pytorch_chinese_lm_pretrain文件夹内包含bert类模型预训练的基础代码，修改sh文件夹中的文件即可使用。此处实现参照了transformers库的预训练预训练代码和中文模型预训练的github项目(https://github.com/zhusleep/pytorch_chinese_lm_pretrain)
+1.pytorch_chinese_lm_pretrain文件夹内包含bert类模型预训练的基础代码，可直接采用训练语句使用，也可通过修改sh文件夹中的内容使用。此处实现参照了transformers库的预训练预训练代码和中文模型预训练的github项目(https://github.com/zhusleep/pytorch_chinese_lm_pretrain)
 
 2.transfer.py用于将预训练完成的bin文件转为ckpt格式，可供tensorflow框架加载。
 
