@@ -1,7 +1,9 @@
 import os
-import tensorflow as tf
+
 import numpy as np
+import tensorflow as tf
 from tqdm import tqdm
+
 
 def clean_blank(image_path):
     # 解决全白图片的方案：
@@ -26,7 +28,14 @@ def clean_blank(image_path):
 
 
 if __name__ == '__main__':
-    img_dir = "./data"  # 生成的字体图片路径
-
-    for each_imge in tqdm(os.listdir(img_dir)):
-        clean_blank(os.path.join(img_dir, each_imge))
+    blank_img_array = [255] * np.ones((300, 300, 3))
+    img_dir = "data"  # 生成的字体图片路径
+    for each_cls in tqdm(os.listdir(img_dir),desc='正在清除空白图片'):
+        dir_path = os.path.join(img_dir, each_cls)
+        for each_img in os.listdir(dir_path):
+            image_path = os.path.join(dir_path, each_img)
+            img_array = tf.keras.preprocessing.image.img_to_array(tf.keras.preprocessing.image.load_img(image_path))
+            if (blank_img_array == img_array).all():
+                os.remove(image_path)
+            else:
+                continue

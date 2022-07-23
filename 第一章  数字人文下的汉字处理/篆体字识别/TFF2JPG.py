@@ -1,11 +1,13 @@
-from PIL import Image, ImageFont, ImageDraw
 import os
+
+from PIL import Image, ImageFont, ImageDraw
 from fontTools.ttLib import TTFont
+from tqdm import tqdm
 
 
 def char_to_img(all_chara, img_dir, uniMap, font, img_size):
     """借由汉字列表（all_chara）中的汉字，生成由指定字体构成的图片"""
-    for chara in all_chara:
+    for chara in tqdm(all_chara, desc='正在生成字体图片'):
         # 判断是否存在该字
         if ord(chara) in uniMap:
             # 新建长宽为300像素，背景色为白色的画布对象
@@ -17,7 +19,7 @@ def char_to_img(all_chara, img_dir, uniMap, font, img_size):
             im = im.crop(im.getbbox())
             # 保存汉字图像
             if not os.path.exists(img_dir + "/" + chara + "/"):
-                os.mkdir(img_dir + "/" + chara + "/")
+                os.makedirs(img_dir + "/" + chara + "/")
             save_path = img_dir + "/" + chara + "/" + str(len(os.listdir(img_dir + "/" + chara + "/"))) + ".png"
             im.save(save_path)
 
