@@ -91,12 +91,12 @@ model = model_compile(final_model)
 
 # 图像增强
 train_gen = tf.keras.preprocessing.image.ImageDataGenerator(preprocessing_function=preprocess_input,
-                                                            rotation_range=30,
-                                                            width_shift_range=0.2,
-                                                            height_shift_range=0.2,
-                                                            shear_range=0.2,
-                                                            zoom_range=0.2,
-                                                            horizontal_flip=True,
+                                                            # rotation_range=30,
+                                                            # width_shift_range=0.2,
+                                                            # height_shift_range=0.2,
+                                                            # shear_range=0.2,
+                                                            # zoom_range=0.2,
+                                                            # horizontal_flip=True,
                                                             validation_split=0.2
                                                             )
 
@@ -126,6 +126,9 @@ val_generator = train_gen.flow_from_directory(train_path, target_size=IMG_SIZE, 
 # 可以添加EarlyStopping——param: callback=[]
 # 若划分了validationset,在fit时记得添加_ param: validation_data=
 callback = tf.keras.callbacks.EarlyStopping(monitor='loss', min_delta=0.005, patience=3)
-history = model.fit(train_generator, validation_data=val_generator, epochs=100, callbacks=[callback])
+history = model.fit(train_generator, validation_data=val_generator, epochs=30, callbacks=[callback])
 
 model.save(save_path)
+
+
+

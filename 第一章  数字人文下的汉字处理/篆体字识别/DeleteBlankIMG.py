@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 def clean_blank():
     # 解决全白图片的方案：
-    blank_img_array = [255] * np.ones((300, 300, 3))  # 创建一个空白图片矩阵
+    blank_img_array = [255] * np.ones((30, 30, 3))  # 创建一个空白图片矩阵
     img_dir = "data"  # 设置待清除空白图片的文件夹路径
     for each_cls in tqdm(os.listdir(img_dir), desc='正在清除空白图片'):
         dir_path = os.path.join(img_dir, each_cls)
